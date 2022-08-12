@@ -42,10 +42,9 @@ class TeacherController extends Controller
             $techer = Teacher::create([
                 'name' => $request->name,
                 'designation' => $request->designation,
-                'email' => $request->email,
-                'phone' => $request->phone, 
+                'phone' => $request->phone,
             ]);
-            if(request()->file('img')){
+            if (request()->file('img')) {
                 $techer->img = $this->uploadimg(request()->file('img'));
                 $techer->save();
             }
@@ -76,7 +75,6 @@ class TeacherController extends Controller
             $requestData = [
                 'name' => $request->name,
                 'designation' => $request->designation,
-                'email' => $request->email,
                 'phone' => $request->phone,
             ];
 
@@ -116,7 +114,7 @@ class TeacherController extends Controller
         ]);
     }
 
-        public function restore($teacher)
+    public function restore($teacher)
     {
         $teacher = Teacher::onlyTrashed()->findOrFail($teacher);
         $teacher->restore();

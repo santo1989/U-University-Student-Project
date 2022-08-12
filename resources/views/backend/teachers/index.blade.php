@@ -49,10 +49,11 @@
                     @foreach ($teachers as$teacher)
                     <tr>
                         <td>{{ ++$sl }}</td>
-                        <td>{{$teacher->name }}</td>
+                        
                         <td>
-                            <img src="{{ asset('storage/teachers/'.$teacher->img) }}" alt="{{$teacher->name }}" width="100px" height="100px">
+                            <img src="{{ asset('storage/teachers/'.$teacher->img) }}" class="rounded-circle" alt="{{$teacher->name }}" width="100px" height="100px">
                         </td>
+                        <td>{{$teacher->name }}</td>
                         <td>{{$teacher->designation }}</td>
                         <td>{{$teacher->phone }}</td>
                         
