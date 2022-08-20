@@ -17,11 +17,18 @@
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Student
-
-            {{-- @can('create-category') --}}
+        @can('create-student')
+        @php
+            $model0fstudent = App\Models\Student::find($user_id = auth()->user()->id);
+            // dd($model0fstudent);
+        @endphp
+        @if ($model0fstudent == null)
             <a class="btn btn-sm btn-info" href="{{ route('student.create') }}">Add New</a>
-            {{-- @endcan --}}
-
+            
+        @endif
+            {{-- <a class="btn btn-sm btn-info" href="{{ route('student.create') }}">Add New</a> --}}
+        @endcan
+            
         </div>
         <div class="card-body">
 
@@ -36,9 +43,8 @@
                 <thead>
                     <tr>
                         <th>Sl#</th>
-                        <th>Student Reg No</th>
+                        <th>Student ID</th>
                         <th>Year</th>
-                        <th>Section</th>
                         <th>Course Name</th>
                         <th>student Session</th>
                         <th>Action</th>
@@ -54,25 +60,25 @@
                         
                         <td>{{ $student->year }}</td>
 
-                        <td>{{ $student->section }}</td>
-
                         <td>{{ $student->course_name }}</td>
 
                         <td>{{ $student->student_session }}</td>
                         
                         
                         <td>
+                            @can('create-student')
                             <a class="btn btn-info btn-sm" href="{{ route('student.show', ['student' => $student->id]) }}">Show</a>
-
+                           
                             <a class="btn btn-warning btn-sm" href="{{ route('student.edit', ['student' => $student->id]) }}">Edit</a>
-
+                            @endcan
+                            @can('superVisor')
                             <form style="display:inline" action="{{ route('student.destroy', ['student' => $student->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
 
                                 <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>
-
+                            @endcan
                             {{-- <!-- <a href="{{ route('student.destroy', ['student' => $student->id]) }}" >Delete</a> --> --}}
 
 

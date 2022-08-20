@@ -37,6 +37,7 @@ class FileUploadController extends Controller
     {
         try {
             FileUpload::create([
+                'user_id' => $request->user_id,
                 'file_type' => $request->file_type,
                 'pdf' => $this->uploadpdf(request()->file('pdf')),
                 'subject' => $request->subject,
@@ -54,7 +55,6 @@ class FileUploadController extends Controller
             // 'fileupload' => $fileupload,
             'fileupload_show' => $fileupload,
         ]);
-        
     }
 
     public function edit(FileUpload $fileupload)
@@ -69,7 +69,9 @@ class FileUploadController extends Controller
     {
         try {
             $requestData = [
+                'user_id' => $request->user_id,
                 'file_type' => $request->file_type,
+                'subject' => $request->subject,
             ];
 
             if ($request->hasFile('pdf')) {

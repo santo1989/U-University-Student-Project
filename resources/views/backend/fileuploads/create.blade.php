@@ -25,7 +25,8 @@
 
             <form action="{{ route('fileupload.store') }}" enctype="multipart/form-data" method="post">
                 @csrf
-               
+                
+               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <label for="file_type">Select Document Type</label>
                 <select name="file_type" id="file_type" class="form-control">
                     <option value="">Select file_type</option>

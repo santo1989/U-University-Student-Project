@@ -8,44 +8,33 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Super-Visor Home
                 </a>
-                
+
                 <a class="nav-link" href="{{ route('teachers.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Teachers
                 </a>
 
-                <a class="nav-link" href="{{ route('year.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                   Year
-                </a>
-
-
-                <a class="nav-link" href="{{ route('result.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Result
-                </a>
-
-                <a class="nav-link" href="{{ route('course.index') }}">
+                 <a class="nav-link" href="{{ route('course.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Course
                 </a>
-
-
                 
                 <a class="nav-link" href="{{ route('fileupload.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Downloadable FileUpload
-                </a>
-              
-                <a class="nav-link" href="{{ route('markinput.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Mark Input
+                   Check Downloadable FileUpload
                 </a>
 
-                <a class="nav-link" href="{{ route('exam.index') }}">
+              <a class="nav-link" href="{{ route('exam.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Exam
+                    Set Exam Schedule
                 </a>
+
+                <a class="nav-link" href="{{ route('markinput.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Assign Mark
+                </a>
+
+                
 
                 {{--@can('user-management')--}}
 
@@ -81,10 +70,6 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     coordinator Home
                 </a>
-                <a class="nav-link" href="{{ route('result.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Result
-                </a>
 
                 <a class="nav-link" href="{{ route('course.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -92,7 +77,11 @@
                 </a>
 
 
-                
+                 <a class="nav-link" href="{{ route('exam.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Set Exam Schedule
+                </a>
+
                 <a class="nav-link" href="{{ route('fileupload.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Downloadable FileUpload
@@ -100,14 +89,10 @@
             
                 <a class="nav-link" href="{{ route('markinput.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Mark Input
+                   Assign Mark to Student
                 </a>
 
-                <a class="nav-link" href="{{ route('exam.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Exam
-                </a>
-
+               
             </div>
             @endcan
 
@@ -118,24 +103,40 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Student Home
                 </a>
+
+                <a class="nav-link" href="{{ route('student.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Student Profile
+                </a>
+                
+                <a class="nav-link" href="{{ route('year.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Course Registration
+                </a>
+
+                <a class="nav-link" href="{{ route('fileupload.create') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Downloadable FileUpload
+                </a>
+                
                 <a class="nav-link" href="{{ route('result.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Result
                 </a>
 
-                <a class="nav-link" href="{{ route('course.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Course
-                </a>
-
+                
 
                 
-                <a class="nav-link" href="{{ route('fileupload.create') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Downloadable FileUpload
-                </a>
+                
 
             </div>
+            @endcan
+            @can('Guest')
+            <a class="nav-link" href="#">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Waiting for Supervisor Conformation
+            </a>
+                
             @endcan
         </div>
         <div class="sb-sidenav-footer">

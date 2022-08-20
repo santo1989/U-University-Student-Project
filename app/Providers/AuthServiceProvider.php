@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -38,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        Gate::define('coOrdinator', function (User $user) {
+        Gate::define('coordinator', function (User $user) {
 
                     if ($user->role_id == 2) {
                         return true;
@@ -55,8 +57,35 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-     
+     Gate::define('create-student', function (User $user) {
+        if ($user->role_id == 3 && Auth::user()->id == $user->id) {
+            return true;
+        }
+        return false;
+    });
 
+    Gate::define('create-notice', function (User $user) {
+        if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
+            return true;
+        }
+        return false;
+    });
+
+    Gate::define('create-course', function (User $user) {
+        if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
+            return true;
+        }
+        return false;
+    });
+
+    Gate::define('create-year', function (User $user) {
+        if ($user->role_id == 1 || $user->role_id == 2 || $user->role_id == 3 && Auth::user()->id == $user->id) {
+            return true;
+        }
+        return false;
+    });
+
+    
     
     }
 }

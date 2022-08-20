@@ -12,16 +12,14 @@ class NotificationController extends Controller
 
     {
 
-        $notification = Notification::find($notification_id)->latest();
-        $notification->status = 'read';
-        $notification->color = 'green';
-        $notification->update();
-
-        $messagesold = Message::find($id);
-        $messages=$messagesold->latest();
-        return view('backend.message.index', [
-            'show_message' => $messages
+        $notifications = Notification::find($notification_id)->latest();
+        $notifications->status = 'read';
+        $notifications->color = 'green';
+        $notifications->update();
+        return view('home', [
+            'notifications' => $notifications
         ]);
+       
 
     }
 }

@@ -1,4 +1,6 @@
 <x-backend.layouts.master>
+ {{-- @php die("check"); @endphp --}}
+
     <x-slot name="pageTitle">
         Add Form
     </x-slot>
@@ -23,38 +25,38 @@
 
            <x-backend.layouts.elements.errors :errors="$errors"/>
 
-            <form action="{{ route('markinput.store') }}" enctype="multipart/form-data" method="post">
+            <form action="{{ route('markinput.store') }}"  enctype="multipart/form-data" method="post">
                 @csrf
-
-               
-                <x-backend.form.input name="exam_name" type="text"/>
-
-                <br>
-                <select name="year" class="form-control">
-                    <option value="">Select Year</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                    @endforeach
-                </select>
-                <br>
-                <select name="course_name" class="form-control">
-                    <option value="">Select Course</option>
-                    @foreach($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> --}}
+                <select name="exam_name" class="form-control">
+                    <option value="">Select Exam</option>
+                    @foreach($exams as $exam)
+                        <option value="{{ $exam->exam_name }}">{{ $exam->exam_name }}</option>
                     @endforeach
                 </select>
                 <br>
 
-               @forelse ($students as $student )
-                    <div class="form-group">
-                        <label for="">{{ $student->student_id }}</label>
-                        <input type="text" name="marks[]" class="form-control">
-                    </div>
-                @empty
-                    <div class="alert alert-danger">No Student Found</div>
-                @endforelse
-
+                <select name="student_id" class="form-control">
+                    <option value="">Select Student</option>
+                    @foreach($students as $student)
+                        <option value="{{ $student->student_id }}">{{ $student->student_id }}</option>
+                    @endforeach
+                </select>
                 <br>
+
+                <select name="file_name" class="form-control">
+                    <option value="">Select File</option>
+                    @foreach($fileuploads as $fileupload)
+                        <option value="{{ $fileupload->id }}">{{ $student->student_id. ' '.  $fileupload->subject.' '.  $fileupload->file_type }}</option>
+                    @endforeach
+                </select>
+                <br>
+                   
+
+                 <x-backend.form.input name="mark_Co_Ordinator" type="number" label="Mark Co-Ordinator" />
+                <br>
+                <x-backend.form.input name="mark_SuperViser" type="number"/>
+                    <br>
 
                 <x-backend.form.button>Save</x-backend.form.button>
             </form>

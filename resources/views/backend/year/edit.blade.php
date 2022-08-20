@@ -5,10 +5,10 @@
 
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Year Input </x-slot>
+            <x-slot name="pageHeader"> Course Registration </x-slot>
 
             <li class="breadcrumb-item"><a href="{{ route('year.index')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Edit</li>
+            <li class="breadcrumb-item active">Edit Course Registration</li>
 
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
@@ -16,7 +16,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Edit Year Input <a class="btn btn-sm btn-info" href="{{ route('year.index') }}">List</a>
+            Edit Course Registration <a class="btn btn-sm btn-info" href="{{ route('year.index') }}">List</a>
         </div>
         <div class="card-body">
 
@@ -34,54 +34,36 @@
                 @csrf
                 @method('put')
 
-                <select name="year_name" class="form-control">
-                    <option value="">Select Year</option>
-                        <option value="1" {{ $single_year->year_name == 1 ? 'selected' : '' }}>First Year</option>
-                        <option value="2" {{ $single_year->year_name == 2 ? 'selected' : '' }}>Second Year</option>
-                        <option value="3" {{ $single_year->year_name == 3 ? 'selected' : '' }}>Third Year</option>
-                </select>
+               <x-backend.form.input name="student_id" value="{{ $single_year->student_id }}"/>
                 <br>
 
-                <select name="course_name" class="form-control">
+                <label for="course_name">Select Course Name</label>
+                <select name="course_name" class="form-control" id="course">
                     <option value="">Select Course</option>
-                    @foreach($course as $courses)
-                        <option value="{{ $courses->course_name }}" {{ $single_year->course_name == $courses->course_name ? 'selected' : '' }}>{{ $courses->course_name }}</option>
+                    @foreach ($course as $course )
+                    <option value="{{ $course->course_name }}" {{ $single_year->course_name == $course->course_name ? 'selected' : '' }}>{{ $course->course_name }}</option>
+
                     @endforeach
+                   
+                    
+
                 </select>
                 <br>
-                {{-- <select name="mark_distribution_id[]" class="form-control" multiple>
-                    <option value="">Select multiple Mark Distribution Type using ctrl button</option>
-                    @foreach($markdestribution as $markDistributions)
-                        <option value="{{ $markDistributions->mark_distribution_name }}">{{ $markDistributions->mark_distribution_name }}</option>
-                    @endforeach
-                </select>  --}}
 
-                    {{-- checkbox --}}
-                    {{-- <div class="form-group">
-                        <label for="mark_distribution_id">Mark Distribution Type</label>
-                        <div class="form-check">
-                            @forelse ($markdestribution as $markDistributions )
-                            <input type="checkbox" name="mark_distribution_id[]" value="{{ $markDistributions->mark_distribution_name }}" {{ in_array($markDistributions->mark_distribution_name, $mark_distribution_id) ? 'checked' : '' }}> {{ $markDistributions->mark_distribution_name }}
-    
-                            @empty
-                                <label class="form-check-label">No Mark Distribution Type Found</label>
-                            @endforelse
-                        </div>
-                    </div> --}}
-              
-                {{-- @checked(true, $single_year->mark_distribution_id) --}}
-                @forelse ($markdestribution as $markDistributions )
-                    <input type="checkbox" name="mark_distribution_id[]" value=" {{ $markDistributions->mark_distribution_name }} " required> {{ $markDistributions->mark_distribution_name }}
-                @empty
-                    <p>No Mark Distribution Type Found</p>
-                @endforelse
+                <label for="year">Select Year</label>
+                <select name="year" class="form-control" id="year">
+                    <option value="">Select Year</option>
+                    <option value="2018" {{ $single_year->year == '2018' ? 'selected' : '' }}>2018</option>
+                    <option value="2019" {{ $single_year->year == '2019' ? 'selected' : '' }}>2019</option>
+                    <option value="2020" {{ $single_year->year == '2020' ? 'selected' : '' }}>2020</option>
+                    <option value="2021" {{ $single_year->year == '2021' ? 'selected' : '' }}>2021</option>
+                    <option value="2022" {{ $single_year->year == '2022' ? 'selected' : '' }}>2022</option>
+                    <option value="2023" {{ $single_year->year == '2023' ? 'selected' : '' }}>2023</option>
+                    <option value="2024" {{ $single_year->year == '2024' ? 'selected' : '' }}>2024</option>
+                    <option value="2025" {{ $single_year->year == '2025' ? 'selected' : '' }}>2025</option>
 
-
-
-
-
+                </select>
                 <br>
-
                 
                 
                 <x-backend.form.button>Update</x-backend.form.button>

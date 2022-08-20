@@ -1,14 +1,14 @@
 <x-backend.layouts.master>
     <x-slot name="pageTitle">
-        Year Input
+        Course Registration
     </x-slot>
 
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Year Input </x-slot>
+            <x-slot name="pageHeader"> Course Registration </x-slot>
 
             <li class="breadcrumb-item"><a href="{{ route('year.index')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Year Input</li>
+            <li class="breadcrumb-item active">Course Registration</li>
 
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
@@ -17,11 +17,11 @@
     <div class="card mb-4" style="width: 100%">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Year Input
+            Course Registration
 
-            {{-- @can('create-category') --}}
+            @can('create-student')
             <a class="btn btn-sm btn-info" href="{{ route('year.create') }}">Add New</a>
-            {{-- @endcan --}}
+            @endcan
 
         </div>
         <div class="card-body">
@@ -37,12 +37,9 @@
                 <thead>
                     <tr>
                         <th>Sl#</th>
-                        <th>Student Name</th>
-                        <th>Reg Number</th>
-                        <th>Roll Number</th>
+                        <th>Student ID</th>
+                        <th>Course Name</th>
                         <th>Year</th>
-                        <th>Course Year</th>
-                        <th>Section</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -52,26 +49,27 @@
                     <tr>
                         <td>{{ ++$sl }}</td>
                        
-                        <td>{{ $year->user->name }}</td> 
-                        <td>{{ $year->user->reg_num }}</td>
-                        <td>{{ $year->user->roll_num }}</td>
-                        <td>{{ $year->year }}</td>  
-                        <td>{{ $year->course_year }}</td>
+                        <td>{{ $year->student_id }}</td>
+                        <td>{{ $year->course_name }}</td>
+                        <td>{{ $year->year }}</td>
                         <td>{{ $year->section }}</td>
 
                         
                         <td>
+                            @can('create-student')
                             <a class="btn btn-info btn-sm" href="{{ route('year.show', ['year' => $year->id]) }}">Show</a>
 
                             <a class="btn btn-warning btn-sm" href="{{ route('year.edit', ['year' => $year->id]) }}">Edit</a>
 
+                            @endcan
+                            @can('superVisor')
                             <form style="display:inline" action="{{ route('year.destroy', ['year' => $year->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
 
                                 <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>
-
+                            @endcan
                             {{-- <!-- <a href="{{ route('year.destroy', ['year' => $year->id]) }}" >Delete</a> --> --}}
 
 

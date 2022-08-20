@@ -25,43 +25,35 @@
 
             <form action="{{ route('student.store') }}" enctype="multipart/form-data" method="post">
                 @csrf
-
-               
-                <div class="form-group">
-                    {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> --}}
-                </div>
-
-                <div class="form-group">
-                   {{-- <input type="hidden" name="profile_id" value="{{ Auth::user()->profile->id }}"> --}}
-                </div>
-                
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <x-backend.form.input name="student_id" type="number"/>
                 <br>
                 <select name="year" class="form-control">
                     <option value="">Select Year</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year->id }}">{{ $year->year_name }}</option>
-                    @endforeach
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
                 </select>
                 <br>
 
-                <select name="section" class="form-control">
-                    <option value="">Select Section</option>
-                    @foreach($sections as $section)
-                        <option value="{{ $section->id }}">{{ $section->section_name }}</option>
-                    @endforeach
-                </select>
+                <x-backend.form.input name="student_session" type="number"/>
                 <br>
 
                 <select name="course_name" class="form-control">
                     <option value="">Select Course</option>
-                    @foreach($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
-                    @endforeach
-                </select>
 
-                <br>
-                <x-backend.form.input name="student_session" type="text"/>
+                    @forelse($courses as $course)
+                        <option value="{{ $course->course_name }}">{{ $course->course_name }}</option>
+                    @empty
+                        <option value="">No Course Found</option>
+                    @endforelse
+
+                </select>
                 <br>
 
                 <x-backend.form.button>Save</x-backend.form.button>

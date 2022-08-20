@@ -34,9 +34,14 @@
                 <br>
                 <select name="year" class="form-control">
                     <option value="">Select Year</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year->id }}">{{ $year->name }}</option>
-                    @endforeach
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
                 </select>
                 <br>
                 <select name="status" class="form-control">

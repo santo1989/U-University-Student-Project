@@ -34,37 +34,37 @@
                 @csrf
                 @method('put')
 
-                <x-backend.form.input name="exam_name" type="text" :value="$single_markinput->mark"/>
+                <select name="exam_name" class="form-control">
+                    <option value="">Select Exam</option>
+                    @foreach($exams as $exam)
+                        <option value="{{ $exam->exam_name }}" {{ $single_markinput->exam_name == $exam->exam_name ? 'selected' : '' }}>{{ $exam->exam_name }}</option>
+                    @endforeach
+                </select>
+                <br>
+                <select name="student_id" class="form-control">
+                    <option value="">Select Student</option>
+                    @foreach($students as $student)
+                        <option value="{{ $student->student_id }}" {{ $single_markinput->student_id == $student->student_id ? 'selected' : '' }}>{{ $student->student_id }}</option>
+                    @endforeach
+                </select>
+                <br>
+                <select name="file_name" class="form-control">
+                    <option value="">Select File</option>
+                    @foreach($fileuploads as $fileupload)
+                        <option value="{{ $fileupload->id }}" {{ $single_markinput->file_name == $fileupload->id ? 'selected' : '' }}>{{ $student->student_id. ' '.  $fileupload->subject.' '.  $fileupload->file_type }}</option>
+                    @endforeach
+                </select>
+                
 
-                    <select name="section_id" class="form-control">
-                        <option value="">Select Section</option>
-                        @foreach($sections as $section)
-                            <option value="{{ $section->id }}" {{ $single_markinput->section_id == $section->id ? 'selected' : '' }}>{{ $section->name }}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <select name="year" class="form-control">
-                        <option value="">Select Year</option>
-                        @foreach($years as $year)
-                            <option value="{{ $year->id }}" {{ $single_markinput->year == $year->id ? 'selected' : '' }}>{{ $year->name }}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <select name="course_name" class="form-control">
-                        <option value="">Select Course</option>
-                        @foreach($courses as $course)
-                            <option value="{{ $course->id }}" {{ $single_markinput->course_name == $course->id ? 'selected' : '' }}>{{ $course->name }}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <select name="student_id" class="form-control">
-                        <option value="">Select Student</option>
-                        @foreach($students as $student)
-                            <option value="{{ $student->id }}" {{ $single_markinput->student_id == $student->id ? 'selected' : '' }}>{{ $student->reg_no }}</option>
-                        @endforeach
-                    </select>
 
-                    <x-backend.form.input name="mark" type="number" :value="$single_markinput->mark"/>
+
+
+    
+                    <br>
+
+                    <x-backend.form.input name="mark_Co_Ordinator" type="number" :value="$single_markinput->mark_Co_Ordinator"/>
+                    <x-backend.form.input name="mark_SuperViser" type="number" :value="$single_markinput->mark_SuperViser"/>
+                    
                 <x-backend.form.button>Update</x-backend.form.button>
 
             </form>

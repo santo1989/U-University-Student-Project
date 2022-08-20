@@ -19,9 +19,8 @@
            Student Details <a class="btn btn-sm btn-info" href="{{ route('student.index') }}">List</a>
         </div>
         <div class="card-body">
-                <p><h4>Student Reg No  : </h4>{{ $show_student->student_id }}</p>
+                <p><h4>Student ID  : </h4>{{ $show_student->student_id }}</p>
                 <p><h4>Year  : </h4>{{ $show_student->year }}</p>
-                <p><h4>Section  : </h4>{{ $show_student->section }}</p>
                 <p><h4>Course Name  : </h4>{{ $show_student->course_name }}</p>
                 <p><h4>Student Session  : </h4>{{ $show_student->student_session }}</p>
         </div>

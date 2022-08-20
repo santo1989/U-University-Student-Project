@@ -43,10 +43,10 @@ class YearController extends Controller
         $course = Course::all();
         try {
             Year::create([
+
                 'student_id' => $request->student_id,
-                'course_year' => $request->course_year,
+                'course_name' => $request->course_name,
                 'year' => $request->year,
-                'section' => $request->section,
                 
             ]);
         } catch (QueryException $e) {
@@ -82,10 +82,9 @@ class YearController extends Controller
 
         $year->update([
 
-            'year_name' => $request->year_name,
+            'student_id' => $request->student_id,
             'course_name' => $request->course_name,
             'year' => $request->year,
-                'section' => $request->section,
 
         ]);
 
@@ -105,14 +104,14 @@ class YearController extends Controller
         }
     }
 
-    public function showStudents()
-    {
-        return view('backend.yearwise.temp');
-    }
+    // public function showStudents()
+    // {
+    //     return view('backend.yearwise.temp');
+    // }
 
-    public function showFirstYearASection($course_year, $year)
-    {
-        $yearwisestudents = Year::where('course_year', '=', $course_year)->where('year', '=', $year)->get();
-        return view('backend.yearwise.yearwisestudent', ['yearwisestudents' => $yearwisestudents]);
-    }
+    // public function showFirstYearASection($course_year, $year)
+    // {
+    //     $yearwisestudents = Year::where('course_year', '=', $course_year)->where('year', '=', $year)->get();
+    //     return view('backend.yearwise.yearwisestudent', ['yearwisestudents' => $yearwisestudents]);
+    // }
 }

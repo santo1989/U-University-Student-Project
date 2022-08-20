@@ -19,16 +19,12 @@
            Mark Input Details <a class="btn btn-sm btn-info" href="{{ route('markinput.index') }}">List</a>
         </div>
         <div class="card-body">
-                <p><h4>Mark Input Name  : </h4>{{ $show_markinput->exam_name }}</p>
-                <p><h4>Mark Input Section  : </h4>{{ $show_markinput->section }}</p>
-                <p><h4>Mark Input Year  : </h4>{{ $show_markinput->year }}</p>
-                <p><h4>Mark Input Course Name  : </h4>{{ $show_markinput->course_name }}</p>
-                <p><h4>Mark Input Student Reg No  : </h4>{{ $show_markinput->student_id }}</p>
-                @forelse ($markdistributions as $markdistribution )
-                            <td>{{ $markinput->$markdistribution->mark_distribution_id }}</td>
-                        @empty
-                            <td>No Mark Input</td>
-                        @endforelse
+                <p><h4>Exam Name  : </h4>{{ $show_markinput->exam_name }}</p>
+                <p><h4>Student ID : </h4>{{ $show_markinput->student_id }}</p>
+                <p><h4>File  : </h4>{{ $show_markinput->file_name }}</p>
+                <p><h4>CoOrdinator Mark  : </h4>{{ $show_markinput->mark_Co_Ordinator }}</p>
+                <p><h4>Supervisor Mark  : </h4>{{ $show_markinput->mark_Supervisor }}</p>
+               
 
         </div>
     </div>

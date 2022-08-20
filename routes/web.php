@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ResultController;

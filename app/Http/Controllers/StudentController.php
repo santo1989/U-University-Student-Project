@@ -50,10 +50,11 @@ class StudentController extends Controller
         $students = Student::all();
         try {
             Student::create([
+                'user_id' => $request->user_id,
                 'student_id' => $request->student_id,
                 'year' => $request->year,
-                'section' => $request->section,
-                'course_name' => $request->array_pluck($cours, 'course_name'),
+                'student_session' => $request->student_session,
+                'course_name' => $request->course_name,
             ]);
         } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
@@ -87,9 +88,10 @@ class StudentController extends Controller
 
         try {
             $student->update([
+                'user_id' => $request->user_id,
                 'student_id' => $request->student_id,
                 'year' => $request->year,
-                'section' => $request->section,
+                'student_session' => $request->student_session,
                 'course_name' => $request->course_name,
             ]);
         } catch (QueryException $e) {

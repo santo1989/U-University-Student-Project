@@ -18,7 +18,7 @@
             <i class="fas fa-table me-1"></i>
            Input Mark 
 
-            {{-- @can('create-category') --}}
+            {{-- @can('superVisor' ??  'coordinator')  --}}
             <a class="btn btn-sm btn-info" href="{{ route('markinput.create') }}">Add New</a>
             {{-- @endcan --}}
 
@@ -37,11 +37,10 @@
                     <tr>
                         <th>Sl#</th>
                         <th>Exam Name</th>
-                        <th>Year</th>     
-                        <th>Course Name</th>
                         <th>Student ID</th>
-                        <th>Super Visor Mark </th>
+                        <th>File Name</th>
                         <th>CoOrdinator Mark</th>
+                        <th>Super Visor Mark </th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -52,19 +51,22 @@
                         <td>{{ ++$sl }}</td>
                        
                         <td>{{ $markinput->exam_name }}</td> 
-
-                        <td>{{ $markinput->year }}</td>
-
-                        <td>{{ $markinput->course_name }}</td>
-
+                        
                         <td>{{ $markinput->student_id }}</td>
+@php
+$fileupload = App\Models\Fileupload::find($markinput->file_name);
+echo'<td>'.' '.$fileupload->subject.' '.$fileupload->pdf_type .' '. $fileupload->pdf.'</td>';
+@endphp
 
-                        <td></td>
 
-                        <td></td>
+                        <td>{{ $markinput->mark_Co_Ordinator }}</td>
+
+                        <td>{{ $markinput->mark_SuperViser }}</td>
 
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('markinput.show', ['markinput' => $markinput->id]) }}">Show</a>
+{{-- @can('superVisor' ?? 'coordinator') --}}
+    
 
                             <a class="btn btn-warning btn-sm" href="{{ route('markinput.edit', ['markinput' => $markinput->id]) }}">Edit</a>
 
@@ -74,7 +76,7 @@
 
                                 <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>
-
+{{-- @endcan --}}
                             {{-- <!-- <a href="{{ route('markinput.destroy', ['markinput' => $markinput->id]) }}" >Delete</a> --> --}}
 
 

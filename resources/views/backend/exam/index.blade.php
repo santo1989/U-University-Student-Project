@@ -47,7 +47,7 @@
                 </thead>
                 <tbody>
                     @php $sl=0 @endphp
-                    @foreach ($markinputs as $exam)
+                    @foreach ($exams as $exam)
                     <tr>
                         <td>{{ ++$sl }}</td>
                        
@@ -81,7 +81,7 @@
 
                 </tbody>
             </table>
-            {{ $markinputs->links() }}
+            {{ $exams->links() }}
         </div>
     </div>
 

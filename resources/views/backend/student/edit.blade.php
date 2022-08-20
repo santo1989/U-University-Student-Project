@@ -34,41 +34,31 @@
                 @csrf
                 @method('put')
 
-                <div class="form-group">
-                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                </div>
-
-                <div class="form-group">
-                    <input type="hidden" name="profile_id" value="{{ Auth::user()->profile->id }}">
-                </div>
-
                 <x-backend.form.input name="student_id" type="number" value="{{ $single_student->student_id }}"/>
                 <br>
                 <select name="year" class="form-control">
                     <option value="">Select Year</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year->id }}" {{ $single_student->year_id == $year->id ? 'selected' : '' }}>{{ $year->name }}</option>
-                    @endforeach
+                    <option value="2018" {{ $single_student->year == '2018' ? 'selected' : '' }}>2018</option>
+                    <option value="2019" {{ $single_student->year == '2019' ? 'selected' : '' }}>2019</option>
+                    <option value="2020" {{ $single_student->year == '2020' ? 'selected' : '' }}>2020</option>
+                    <option value="2021" {{ $single_student->year == '2021' ? 'selected' : '' }}>2021</option>
+                    <option value="2022" {{ $single_student->year == '2022' ? 'selected' : '' }}>2022</option>
+                    <option value="2023" {{ $single_student->year == '2023' ? 'selected' : '' }}>2023</option>
+                    <option value="2024" {{ $single_student->year == '2024' ? 'selected' : '' }}>2024</option>
+                    <option value="2025" {{ $single_student->year == '2025' ? 'selected' : '' }}>2025</option>
                 </select>
                 <br>
 
-                <select name="section" class="form-control">
-                    <option value="">Select Section</option>
-                    @foreach($sections as $section)
-                        <option value="{{ $section->id }}" {{ $single_student->section_id == $section->id ? 'selected' : '' }}>{{ $section->name }}</option>
-                    @endforeach
-                </select>
+                <x-backend.form.input name="student_session" type="number" value="{{ $single_student->student_session }}"/>
                 <br>
 
                 <select name="course_name" class="form-control">
                     <option value="">Select Course</option>
                     @foreach($courses as $course)
-                        <option value="{{ $course->id }}" {{ $single_student->course_id == $course->id ? 'selected' : '' }}>{{ $course->course_name }}</option>
+                        <option value="{{ $course->course_name }}" {{ $single_student->course_id == $course->course_name ? 'selected' : '' }}>{{ $course->course_name }}</option>
                     @endforeach
                 </select>
 
-                <br>
-                <x-backend.form.input name="student_session" type="text" value="{{ $single_student->student_session }}"/>
                 <br>
                 <x-backend.form.button>Update</x-backend.form.button>
 

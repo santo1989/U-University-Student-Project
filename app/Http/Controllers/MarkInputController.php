@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Exam;
+use App\Models\FileUpload;
 use App\Models\MarkInput;
+use App\Models\Notification;
 use App\Models\Student;
 use App\Models\Year;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Symfony\Component\Console\Input\Input as InputInput;
 
 class MarkInputController extends Controller
 {
@@ -32,32 +38,48 @@ class MarkInputController extends Controller
     public function create()
     {
         // $this->authorize('create-markinput');
-        $cours = Course::all();
-        $year = Year::all();
+        // die('check');
+        $courses = Course::all();
+        $years = Year::all();
+        $exams = Exam::all();
         $students = Student::all();
+        $fileuploads = FileUpload::all();
         return view('backend.markinput.create', [
-            'courses' => $cours,
-            'years' => $year,
+            'courses' => $courses,
+            'years' => $years,
+            'exams' => $exams,
             'students' => $students,
+            'fileuploads' => $fileuploads
         ]);
     }
 
     public function store(Request $request)
     {
         //  @dd($request);
-        $cours = Course::all();
-        $year = Year::all();
+        $courses = Course::all();
+        $years = Year::all();
         $students = Student::all();
+        $exams = Exam::all();
         try {
+
+
+            // @dd($request);
+
             MarkInput::create([
                 'exam_name' => $request->exam_name,
-                'year' => $request->year,
-                'course_name' => $request->course_name,
                 'student_id' => $request->student_id,
+                'file_name' => $request->file_name,
+
                 'mark_Co_Ordinator' => $request->mark_Co_Ordinator,
                 'mark_SuperViser' => $request->mark_SuperViser,
 
+            ]);
 
+            Notification::create([
+                'name' => 'Result Of Student ID: ' . $request->student_id . 'is published',
+                'status' => 'unread',
+                'link' => route("result.index", $request->student_id),
+                'color' => 'success'
             ]);
         } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
@@ -71,14 +93,18 @@ class MarkInputController extends Controller
 
     public function edit(MarkInput $markinput)
     {
-        $cours = Course::all();
-        $year = Year::all();
+        $courses = Course::all();
+        $years = Year::all();
+        $exams = Exam::all();
         $students = Student::all();
+        $fileuploads = FileUpload::all();
         return view('backend.markinput.edit', [
             'single_markinput' => $markinput,
-            'courses' => $cours,
-            'years' => $year,
+            'courses' => $courses,
+            'years' => $years,
+            'exams' => $exams,
             'students' => $students,
+            'fileuploads' => $fileuploads
         ]);
     }
 
@@ -92,16 +118,16 @@ class MarkInputController extends Controller
     public function update(Request $request, $id)
     {
         $markinput = MarkInput::find($id);
+        
 
         $markinput->update([
-
             'exam_name' => $request->exam_name,
-            'year' => $request->year,
-            'course_name' => $request->course_name,
             'student_id' => $request->student_id,
+            'file_name' => $request->file_name,
             'mark_Co_Ordinator' => $request->mark_Co_Ordinator,
             'mark_SuperViser' => $request->mark_SuperViser,
         ]);
+
 
         $markinput->update();
 

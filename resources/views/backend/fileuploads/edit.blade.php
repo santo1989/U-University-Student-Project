@@ -34,17 +34,20 @@
                 @csrf
                 @method('put')
 
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
                 {{-- <x-backend.form.input name="title" :value="$fileupload->first()->title" />  --}}
                 <label for="file_type">Select Document Type</label>
                 <select name="file_type" id="file_type" class="form-control">
                     <option value="">Select file_type</option>
-                    <option value="Admission">Admission Related</option>
-                    <option value="career">Career Related</option>
-                    <option value="other">Other Document</option>
+                    <option value="document" {{ $fileupload_edit->first()->file_type == 'document' ? 'selected' : '' }}>Submit Document</option>
+                    <option value="presentation" {{ $fileupload_edit->first()->file_type == 'presentation' ? 'selected' : '' }}>Submit Presentation</option>
+                    <option value="FYP" {{ $fileupload_edit->first()->file_type == 'FYP' ? 'selected' : '' }}>FYP Submission</option>
                 </select>
+                <br>
                     
 
-        	    <x-backend.form.input name="pdf" type="file" :value="$fileupload_edit->first()->image"/>  
+        	    <x-backend.form.input name="pdf" type="file" :value="$fileupload_edit->first()->pdf" />  
 
                 <x-backend.form.textarea name="subject">
                 {{ $fileupload_edit->first()->subject }}

@@ -19,14 +19,10 @@
            Year Input Details <a class="btn btn-sm btn-info" href="{{ route('year.index') }}">List</a>
         </div>
         <div class="card-body">
-                {{-- <p><h4>Year Input Name  : </h4>{{ $show_year->year }}</p> --}}
-                <p><h4>Year Input Name  : </h4>{{ $show_year->year_name }}</p>
+                <p><h4>Student ID  : </h4>{{ $show_year->Student_id }}</p>
+                <p><h4>Year  : </h4>{{ $show_year->year }}</p>
                 <p><h4>Course Name  : </h4>{{ $show_year->course_name }}</p>
-                <p><h4>Exam Mark Distribution Type  : </h4>@foreach(explode(',', $show_year->mark_distribution_id) as $info) 
-                    <option>{{$info}}</option>
-                  @endforeach</p>
                 
-
         </div>
     </div>
 

@@ -16,9 +16,8 @@ class CreateMarkInputsTable extends Migration
         Schema::create('mark_inputs', function (Blueprint $table) {
             $table->id();
             $table->string('exam_name')->nullable();
-            $table->string('year')->nullable();
-            $table->string('course_name')->nullable();
             $table->string('student_id')->nullable();
+            $table->string('file_name')->nullable();
             $table->string('mark_Co_Ordinator')->nullable();
             $table->string('mark_SuperViser')->nullable();
             $table->timestamps();
