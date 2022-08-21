@@ -35,30 +35,40 @@
             
                 <tr>
                     
-                    <td><li>Name : {{ $results[1] }}</li><br/>
+                    <td><li>Name : {{ $results[1] }}</li>
                         <li>ID : {{ $results[2] }}</li></td>
-                    @foreach ( $results[3] as $result)
-                        <td><li>Register Course Name : {{ $result->course_name }}</li><br/>
-                            <li>Sesson : {{ $result->year }}</li></td>
                         
-                    @endforeach
-                    @foreach ( $results[4] as $result)
-                        <td><li>Exam : {{ $result->exam_name }}</li><br/> 
+                        <td>
+                    @foreach ( $results[3] as $result)
+                        <li>Register Course Name : {{ $result->course_name }}</li>
+                            <li>Sesson : {{ $result->year }}</li>
+                        @break
                     @endforeach
                     
+                </td>
+                <td>
                     @foreach ( $results[4] as $result)
-                    <td> {{ $result->mark_Co_Ordinator }}</td>
+                        <li>Exam : {{ $result->exam_name }}</li><hr> 
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ( $results[4] as $result)
+                    <ul> {{ $result->mark_Co_Ordinator }}</ul><hr>
                         
                     @endforeach
+                </td>
+                <td>
                     @foreach ( $results[4] as $result)
-                    <td> {{ $result->mark_SuperViser }}</td>
+                    <ul>{{ $result->mark_SuperViser }}</ul><hr>
                         
                     @endforeach
+                </td>
+                <td>
                     @foreach ( $results[4] as $result)
-                    <td>{{ $result->mark_SuperViser + $result->mark_Co_Ordinator }}</td>
+                    <ul>{{ $result->mark_SuperViser + $result->mark_Co_Ordinator }}</ul><hr>
                         
                     @endforeach 
-                    
+                </td>
                 </tr>
             {{-- @endforeach --}}
             @else
