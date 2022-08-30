@@ -13,6 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\MarkInputController;
+use App\Http\Controllers\ProjectGroupController;
+use App\Http\Controllers\ProjectGroupReserveController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +95,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/fileupload/{fileupload}/edit', [FileUploadController::class, 'edit'])->name('fileupload.edit');
     Route::put('/fileupload/{fileupload}', [FileUploadController::class, 'update'])->name('fileupload.update');
     Route::delete('/fileupload/{fileupload}', [FileUploadController::class, 'destroy'])->name('fileupload.destroy');
+
+    //ProjectGroup
+    
+    Route::get('/projectgroup', [ProjectGroupController::class, 'index'])->name('projectGroups.index');
+    Route::get('/projectgroup/create', [ProjectGroupController::class, 'create'])->name('projectGroups.create');
+    Route::post('/projectgroup', [ProjectGroupController::class, 'store'])->name('projectGroups.store');
+    Route::get('/projectgroup/{projectGroups}', [ProjectGroupController::class, 'show'])->name('projectGroups.show');
+    Route::get('/projectgroup/{projectGroups}/edit', [ProjectGroupController::class, 'edit'])->name('projectGroups.edit');
+    Route::put('/projectgroup/{projectGroups}', [ProjectGroupController::class, 'update'])->name('projectGroups.update');
+    Route::delete('/projectgroup/{projectGroups}', [ProjectGroupController::class, 'destroy'])->name('projectGroups.destroy');
+
+
+    //ProjectGroupReserve
+
+    // Route::resource('/projectGroupReserve', ProjectGroupReserveController::class);
+    Route::get('/projectGroupReserve', [ProjectGroupReserveController::class, 'index'])->name('projectGroupReserves.index');
+    Route::get('/projectGroupReserve/create', [ProjectGroupReserveController::class, 'create'])->name('projectGroupReserves.create');
+    Route::post('/projectGroupReserve', [ProjectGroupReserveController::class, 'store'])->name('projectGroupReserves.store');
+    Route::get('/projectGroupReserve/{projectGroupReserves}', [ProjectGroupReserveController::class, 'show'])->name('projectGroupReserves.show');
+    Route::get('/projectGroupReserve/{projectGroupReserves}/edit', [ProjectGroupReserveController::class, 'edit'])->name('projectGroupReserves.edit');
+    Route::put('/projectGroupReserve/{projectGroupReserves}', [ProjectGroupReserveController::class, 'update'])->name('projectGroupReserves.update');
+    Route::delete('/projectGroupReserve/{projectGroupReserves}', [ProjectGroupReserveController::class, 'destroy'])->name('projectGroupReserves.destroy');
 });
 
 Route::resource('/message', MessageController::class);

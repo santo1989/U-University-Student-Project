@@ -48,7 +48,7 @@
                     <option value="">Select Course</option>
 
                     @forelse($courses as $course)
-                        <option value="{{ $course->course_name }}">{{ $course->course_name }}</option>
+                        <option value="{{ $course->course_name  }}">{{ $course->course_name }}</option>
                     @empty
                         <option value="">No Course Found</option>
                     @endforelse

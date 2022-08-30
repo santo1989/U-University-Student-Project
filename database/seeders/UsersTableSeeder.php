@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'role_id' => 1,
-            'name' => 'Santo',
+            'name' => 'CoOrdinator',
             'email' => 'santo.botany@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
-            'name' => 'Co-Ordinator',
+            'name' => 'Supervisor',
             'email' => 'md@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
@@ -38,6 +38,24 @@ class UsersTableSeeder extends Seeder
             'role_id' => 3,
             'name' => 'Student',
             'email' => 'ali@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'role_id' => 4,
+            'name' => 'Guest',
+            'email' => 'g@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::create([
+            'role_id' => 5,
+            'name' => 'Chairman',
+            'email' => 'ch@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
             'remember_token' => Str::random(10),

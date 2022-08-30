@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -47,6 +48,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role_id' => 4,
 
+        ]);
+
+        $notification = Notification::create([
+            'name' => 'New User Added ' . $request->email,
+            'link' => "route('home')",
+            'status' => 'unread',
+            'color' => 'green',
         ]);
 
         event(new Registered($user));

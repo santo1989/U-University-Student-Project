@@ -62,7 +62,7 @@
                             <a class="btn btn-warning btn-sm" href="{{ route('year.edit', ['year' => $year->id]) }}">Edit</a>
 
                             @endcan
-                            @can('superVisor')
+                            @can('coOrdinator')
                             <form style="display:inline" action="{{ route('year.destroy', ['year' => $year->id]) }}" method="post">
                                 @csrf
                                 @method('delete')

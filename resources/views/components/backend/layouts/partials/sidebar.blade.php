@@ -1,13 +1,15 @@
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            @can('superVisor') 
+            @can('coOrdinator') 
             <div class="nav">
-                <div class="sb-sidenav-menu-heading">List</div>
-                <a class="nav-link" href="{{ route('home') }}">
+                <div class="sb-sidenav-menu-heading">Co-Ordinator Home</div>
+
+                
+                {{-- <a class="nav-link" href="{{ route('home') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Super-Visor Home
-                </a>
+                </a> --}}
 
                 <a class="nav-link" href="{{ route('teachers.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -17,6 +19,16 @@
                  <a class="nav-link" href="{{ route('course.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Course
+                </a>
+
+                <a class="nav-link" href="{{ route('projectGroups.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Supervisor Assign
+                </a>
+
+                <a class="nav-link" href="{{ route('projectGroupReserves.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                   Student Assign to Group
                 </a>
                 
                 <a class="nav-link" href="{{ route('fileupload.index') }}">
@@ -60,15 +72,72 @@
 
             </div>
             @endcan
-        
+   
+            
+            {{-- {{ Chairman }} --}}
+            @can('Chairman') 
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Chairman Home</div>
+
+                
+                {{-- <a class="nav-link" href="{{ route('home') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Super-Visor Home
+                </a> --}}
+
+                <a class="nav-link" href="{{ route('teachers.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Teachers
+                </a>
+
+                 <a class="nav-link" href="{{ route('course.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Course
+                </a>
+
+                <a class="nav-link" href="{{ route('projectGroups.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Supervisor Assign
+                </a>
+
+                {{-- <a class="nav-link" href="{{ route('projectGroupReserves.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                   Student Assign to Group
+                </a> --}}
+                
+                <a class="nav-link" href="{{ route('fileupload.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                   Check Downloadable FileUpload
+                </a>
+
+              {{-- <a class="nav-link" href="{{ route('exam.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Exam Schedule
+                </a> --}}
+
+
+
+                
+
+
+
+                {{--@endcan--}}
+
+            </div>
+            @endcan
+
+
+
+
+
 {{-- Co-Ordinator --}}
 
-            @can('coordinator') 
+            @can('superVisor') 
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">List</div>
                 <a class="nav-link" href="{{ route('home') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    coordinator Home
+                    superVisor Home
                 </a>
 
                 <a class="nav-link" href="{{ route('course.index') }}">
@@ -132,12 +201,15 @@
             </div>
             @endcan
             @can('Guest')
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">List</div>
             <a class="nav-link" href="#">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Waiting for Supervisor Conformation
             </a>
-                
+            </div>
             @endcan
+
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>

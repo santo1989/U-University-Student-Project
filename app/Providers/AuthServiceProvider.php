@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Gate::define('create-notice', [NoticePolicy::class, 'create']);
 
-        Gate::define('superVisor', function (User $user) {
+        Gate::define('coOrdinator', function (User $user) {
 
             if ($user->role_id == 1) {
                 return true;
@@ -40,13 +40,13 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        Gate::define('coordinator', function (User $user) {
+        Gate::define('superVisor', function (User $user) {
 
-                    if ($user->role_id == 2) {
-                        return true;
-                    }
-                    return false;
-                });
+            if ($user->role_id == 2) {
+                return true;
+            }
+            return false;
+        });
 
         Gate::define('student', function (User $user) {
 
@@ -57,35 +57,52 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-     Gate::define('create-student', function (User $user) {
-        if ($user->role_id == 3 && Auth::user()->id == $user->id) {
-            return true;
-        }
-        return false;
-    });
+        Gate::define('Chairman', function (User $user) {
 
-    Gate::define('create-notice', function (User $user) {
-        if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
-            return true;
-        }
-        return false;
-    });
+            if ($user->role_id == 5) {
+                return true;
+            }
 
-    Gate::define('create-course', function (User $user) {
-        if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
-            return true;
-        }
-        return false;
-    });
+            return false;
+        });
 
-    Gate::define('create-year', function (User $user) {
-        if ($user->role_id == 1 || $user->role_id == 2 || $user->role_id == 3 && Auth::user()->id == $user->id) {
-            return true;
-        }
-        return false;
-    });
+        Gate::define('Guest', function (User $user) {
 
-    
-    
+            if ($user->role_id == 4) {
+                return true;
+            }
+
+            return false;
+        });
+
+        
+
+        Gate::define('create-student', function (User $user) {
+            if ($user->role_id == 3 && Auth::user()->id == $user->id) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('create-notice', function (User $user) {
+            if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('create-course', function (User $user) {
+            if ($user->role_id == 1 || $user->role_id == 2 && Auth::user()->id == $user->id) {
+                return true;
+            }
+            return false;
+        });
+
+        Gate::define('create-year', function (User $user) {
+            if ($user->role_id == 1 || $user->role_id == 2 || $user->role_id == 3 && Auth::user()->id == $user->id) {
+                return true;
+            }
+            return false;
+        });
     }
 }

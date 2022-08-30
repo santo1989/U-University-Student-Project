@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -52,6 +53,13 @@ class UserController extends Controller
                 // 'name' => $request->name,
                 'role_id' => $request->role_id
             ];
+
+            $notification = Notification::create([
+                'name' => 'User Role Updated ' . $user->email,
+                'link' => "route('home')",
+                'status' => 'unread',
+                'color' => 'green',
+            ]);
 
             $user->update($requestData);
 

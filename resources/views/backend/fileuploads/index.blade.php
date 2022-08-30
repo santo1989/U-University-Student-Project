@@ -19,9 +19,9 @@
             FileUpload
             <a class="btn btn-sm btn-danger" href="{{ route('fileupload.trashed') }}">Trashed List</a>
 
-            {{-- @can('create-category') --}}
+            @can('Student')
             <a class="btn btn-sm btn-info" href="{{ route('fileupload.create') }}">Add New</a>
-            {{-- @endcan --}}
+            @endcan
 
         </div>
         <div class="card-body">
@@ -60,12 +60,15 @@
 
                             <a class="btn btn-warning btn-sm" href="{{ route('fileupload.edit', ['fileupload' => $fileupload->id]) }}">Edit</a>
 
-                            <form style="display:inline" action="{{ route('fileupload.destroy', ['fileupload' => $fileupload->id]) }}" method="post">
+                            @can( 'coOrdinator')
+                                <form style="display:inline" action="{{ route('fileupload.destroy', ['fileupload' => $fileupload->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
 
                                 <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>
+                            @endcan
+                            
 
                             {{-- <!-- <a href="{{ route('fileupload.destroy', ['fileupload' => $fileupload->id]) }}" >Delete</a> --> --}}
 

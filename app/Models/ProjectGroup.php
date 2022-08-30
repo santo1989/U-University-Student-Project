@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class ProjectGroup extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -15,14 +15,10 @@ class Student extends Model
         return $this->hasMany(Exam::class);
     }
 
-
-  
     public function markInputs()
     {
         return $this->hasMany(MarkInput::class);
     }
-
-   
 
     public function year()
     {
@@ -49,12 +45,14 @@ class Student extends Model
         return $this->belongsToMany(ProjectGroupReserve::class);
     }
 
-    public function projectGroupReserve()
+    public function teacher()
     {
-        return $this->belongsToMany(ProjectGroupReserve::class);
+        return $this->belongsTo(Teacher::class);
     }
 
-
-
-
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
+    
 }

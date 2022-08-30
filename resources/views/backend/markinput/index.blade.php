@@ -18,7 +18,7 @@
             <i class="fas fa-table me-1"></i>
            Input Mark 
 
-            {{-- @can('superVisor' ??  'coordinator')  --}}
+            {{-- @can('coOrdinator' ??  'superVisor')  --}}
             <a class="btn btn-sm btn-info" href="{{ route('markinput.create') }}">Add New</a>
             {{-- @endcan --}}
 
@@ -65,7 +65,7 @@ echo'<td>'.' '.$fileupload->subject.' '.$fileupload->pdf_type .' '. $fileupload-
 
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('markinput.show', ['markinput' => $markinput->id]) }}">Show</a>
-{{-- @can('superVisor' ?? 'coordinator') --}}
+{{-- @can('coOrdinator' ?? 'superVisor') --}}
     
 
                             <a class="btn btn-warning btn-sm" href="{{ route('markinput.edit', ['markinput' => $markinput->id]) }}">Edit</a>

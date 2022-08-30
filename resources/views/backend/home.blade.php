@@ -1,12 +1,12 @@
 @switch(auth()->user()->role->name)
-  @case('superVisor')
+  @case('coOrdinator')
     
     
-{{-- @if(auth()->user()->role->name == "superVisor")  --}}
+{{-- @if(auth()->user()->role->name == "coOrdinator")  --}}
 <x-backend.layouts.master>
 
     <x-slot name="pageTitle">
-      Super Visor Dashboard
+      Co-Ordinator Dashboard
     </x-slot>
 
     <x-slot name='breadCrumb'>
@@ -65,18 +65,44 @@
 {{-- @endif --}}
 @break
 
-  
+@case('Chairman')
+    
+    
+{{-- @if(auth()->user()->role->name == "chairman")  --}}
+    
+    
+{{-- @if(auth()->user()->role->name == "coOrdinator")  --}}
+<x-backend.layouts.master>
+
+    <x-slot name="pageTitle">
+      Chairman Dashboard
+    </x-slot>
+
+    <x-slot name='breadCrumb'>
+        <x-backend.layouts.elements.breadcrumb>
+            <x-slot name="pageHeader"> Dashboard </x-slot>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </x-backend.layouts.elements.breadcrumb>
+    </x-slot>
+
+
+       
+   {{-- </div> --}}
+
+</x-backend.layouts.master>
+{{-- @endif --}}
+@break
 
   
 {{-- @elseif(auth()->user()->role->name == "student")  --}}
 
 {{-- @endif --}}
-{{-- @elseif(auth()->user()->role->name == "coordinator") --}}
+{{-- @elseif(auth()->user()->role->name == "superVisor") --}}
 {{-- @else --}}
-@case('coordinator')
+@case('superVisor')
 <x-backend.layouts.master>
 <x-slot name="pageTitle">
-  coordinator Portal
+  superVisor Portal
     </x-slot>
 
     <x-slot name='breadCrumb'>
@@ -112,6 +138,7 @@
             Notifications</h3> 
             @php
               $notifications = App\Models\Notification::all();
+
             @endphp
          @forelse ($notifications as $notification)
             <a href="{{ $notification->link }}" style="text-decoration: none; ">
@@ -131,7 +158,29 @@
   {{-- </div> --}}
 </x-backend.layouts.master>
 @break
+
+@case('Guest')
+<x-backend.layouts.master>
+  <x-slot name="pageTitle">
+          Guest Portal
+      </x-slot>
+  
+      <x-slot name='breadCrumb'>
+          <x-backend.layouts.elements.breadcrumb>
+              <x-slot name="pageHeader"> Welcome, {{ auth()->user()->name }} </x-slot>
+              
+          </x-backend.layouts.elements.breadcrumb>
+      </x-slot>
+      <div class="col-md-12"><i class="fas fa-tachometer-alt"></i>
+      Waiting for Cooridinator Conformation
+    </div>
+ 
+    {{-- </div> --}}
+  </x-backend.layouts.master>
+  @break
+
 @default
+
 <x-backend.layouts.master>
   <x-slot name="pageTitle">
           Student Portal
@@ -179,6 +228,7 @@
       </div>
     {{-- </div> --}}
   </x-backend.layouts.master>
+{{-- @break --}}
 @endswitch
 {{-- @else
 <x-backend.layouts.master>
