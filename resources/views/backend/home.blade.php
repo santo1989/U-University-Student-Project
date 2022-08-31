@@ -102,7 +102,7 @@
 @case('superVisor')
 <x-backend.layouts.master>
 <x-slot name="pageTitle">
-  superVisor Portal
+  supervisor Portal
     </x-slot>
 
     <x-slot name='breadCrumb'>

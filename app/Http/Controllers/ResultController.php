@@ -4,7 +4,9 @@ use App\Models\Course;
 use App\Models\MarkInput;
 use App\Models\Notification;
 use App\Models\Result;
+use App\Models\Role;
 use App\Models\Student;
+use App\Models\User;
 use App\Models\Year;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -102,5 +104,21 @@ class ResultController extends Controller
         } catch (QueryException $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
+    }
+
+    public function printResult()
+    {
+        $fullresultsCollection = [
+            $user_id = Role::where('name', 'student')->first()->id,
+            $student_name = User::find($user_id)->name,
+            $student_id = Student::all()->where('user_id', $user_id)->first()->student_id,
+            $courses_registration = Year::where('student_id', $student_id)->get(),
+            $result = MarkInput::where('student_id', $student_id)->get(),   
+        ];
+        //    dd($fullresultsCollection);
+        
+        return view('backend.result.printResult', [
+            'fullresults' => $fullresultsCollection
+        ]);
     }
 }

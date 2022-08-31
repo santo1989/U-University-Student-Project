@@ -45,7 +45,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Assign Mark
                 </a>
-
+                <a class="nav-link" href="{{ route('result.printResult') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Print Mark Sheet
+                </a>
                 
 
                 {{--@can('user-management')--}}
@@ -137,7 +140,7 @@
                 <div class="sb-sidenav-menu-heading">List</div>
                 <a class="nav-link" href="{{ route('home') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    superVisor Home
+                    Supervisor Home
                 </a>
 
                 <a class="nav-link" href="{{ route('course.index') }}">
@@ -161,6 +164,10 @@
                    Assign Mark to Student
                 </a>
 
+                <a class="nav-link" href="{{ route('result.printResult') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Print Mark Sheet
+                </a>
                
             </div>
             @endcan
@@ -213,7 +220,14 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-           {{ auth()->user()->role->name ?? "" }}
+            @if (Auth::user()->role_id == 1)
+            Coordinator
+            @elseif (Auth::user()->role_id == 2)
+            Supervisor
+            @else
+            {{ auth()->user()->role->name ?? "" }}
+            @endif
+           
         </div>
     </nav>
 </div>

@@ -6,11 +6,14 @@
             <li class="breadcrumb-item"><a href="{{ route('year.index')}}">Dashboard</a></li>
             <li class="breadcrumb-item active">Result</li>
 
+
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
-    <div id="printResultTable">
-        <button class="btn btn-primary mb-2" onclick="printDiv('printResultTable')">Print</button>
-    <table class="table table-bordered table-striped">
+<div id="printResultTable">
+    <button class="btn btn-primary mb-2" onclick="printDiv('printResultTable')">Print</button>
+    
+    <table class="table table-bordered table-striped"   >
+        
         <thead>
             <tr>
                 {{-- <th>#</th> --}}
@@ -26,21 +29,21 @@
         <tbody>
             
 
-            @php
+            {{-- @php
                 $UID = Auth::user()->id;
                 $VID = $results[0];
-            @endphp
-            {{-- @foreach ($results as $result) --}}
-             @if($UID == $VID)
-
+            @endphp --}}
+            {{-- @forelse ($fullresults as $result) --}}
+             {{-- @if($UID == $VID) --}}
+{{-- @dd($fullresults) --}}
             
                 <tr>
                     
-                    <td><li>Name : {{ $results[1] }}</li>
-                        <li>ID : {{ $results[2] }}</li></td>
+                    <td><li>Name : {{ $fullresults[1] }}</li>
+                        <li>ID : {{ $fullresults[2] }}</li></td>
                         
                         <td>
-                    @foreach ( $results[3] as $result)
+                    @foreach ( $fullresults[3] as $result)
                         <li>Register Course Name : {{ $result->course_name }}</li>
                             <li>Sesson : {{ $result->year }}</li>
                         @break
@@ -48,48 +51,47 @@
                     
                 </td>
                 <td>
-                    @foreach ( $results[4] as $result)
+                    @foreach ( $fullresults[4] as $result)
                         <li>Exam : {{ $result->exam_name }}</li><hr> 
                     @endforeach
                 </td>
                 <td>
-                    @foreach ( $results[4] as $result)
+                    @foreach ( $fullresults[4] as $result)
                     <ul> {{ $result->mark_Co_Ordinator }}</ul><hr>
                         
                     @endforeach
                 </td>
                 <td>
-                    @foreach ( $results[4] as $result)
+                    @foreach ( $fullresults[4] as $result)
                     <ul>{{ $result->mark_SuperViser }}</ul><hr>
                         
                     @endforeach
                 </td>
                 <td>
-                    @foreach ( $results[4] as $result)
+                    @foreach ( $fullresults[4] as $result)
                     <ul>{{ $result->mark_SuperViser + $result->mark_Co_Ordinator }}</ul><hr>
                         
                     @endforeach 
                 </td>
                 </tr>
-            {{-- @endforeach --}}
-            @else
+            {{--  --}}
+            {{-- @empty
                 <tr>
                     <td colspan="6">No Result Found</td>
-                </tr>
-            @endif
+                </tr> --}}
+            {{-- @endforeach --}}
         </tbody>
     </table>
+</div>
     {{-- {{ $results->links() }} --}}
-    </div>
-
-    <script>
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
-    </script>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
 
 </x-backend.layouts.master>

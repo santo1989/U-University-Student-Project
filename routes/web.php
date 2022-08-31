@@ -62,8 +62,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/course', CourseController::class);
 
     // Result
-    
+
+     Route::get('/printResult', [ResultController::class, 'printResult'])->name('result.printResult');
+     
     Route::resource('/result', ResultController::class);
+   
 
     //Year
 
