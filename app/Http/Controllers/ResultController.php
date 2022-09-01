@@ -108,17 +108,48 @@ class ResultController extends Controller
 
     public function printResult()
     {
-        $fullresultsCollection = [
-            $user_id = Role::where('name', 'student')->first()->id,
-            $student_name = User::find($user_id)->name,
-            $student_id = Student::all()->where('user_id', $user_id)->first()->student_id,
-            $courses_registration = Year::where('student_id', $student_id)->get(),
-            $result = MarkInput::where('student_id', $student_id)->get(),   
-        ];
-        //    dd($fullresultsCollection);
         
-        return view('backend.result.printResult', [
-            'fullresults' => $fullresultsCollection
-        ]);
+                $results = MarkInput::all();
+                // dd($results);
+                
+            // for($i = 0; $i < count($results); $i++) {
+            //     $student_id = $results[$i]->student_id;
+            //     $user_id = Student::where('student_id', $student_id)->first()->user_id;
+            //     $student_name = User::where('id', $user_id)->first()->name;
+            //     $courses_name = Year::where('student_id', $student_id)->first()->course_name;
+            //     $mark_Co_Ordinator = $results[$i]->mark_Co_Ordinator;
+            //     $mark_SuperViser = $results[$i]->mark_SuperViser;
+            //     $total = ($mark_Co_Ordinator + $mark_SuperViser);
+            //     $results[$i]->student_name = $student_name;
+            //     $results[$i]->courses_name = $courses_name;
+            //     $results[$i]->total = $total;
+            // }
+        //    $resultsCollection = [
+        //             'student_id' => $student_id,
+        //             'student_name' => $student_name,
+        //             'courses_name' => $courses_name,
+        //             'mark_Co_Ordinator' => $mark_Co_Ordinator,
+        //             'mark_SuperViser' => $mark_SuperViser,
+        //             'total' => $total,
+
+
+
+
+            // $user_id = Role::where('name', 'student')->first()->id,
+            // $student_name = User::find($user_id)->name,
+            // $student_id = Student::all()->where('user_id', $user_id)->first()->student_id,
+            // $courses_registration = Year::where('student_id', $student_id)->get(),
+            // $result = MarkInput::where('student_id', $student_id)->get(),   
+        
+        
+        //    ];
+        //    dd($resultsCollection);
+            return view('backend.result.printResult', [
+                // 'results' => $resultsCollection
+                'results' => $results
+            ]);
+            
+        
+        
     }
 }
